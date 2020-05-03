@@ -29,7 +29,7 @@ hardware vendor.
 
 %package	devel
 Summary:	Development files for %{name}
-Requires:	%{name}%{_isa} = %{version}-%{release}
+Requires:	%{name}%{_isa} = %{epoch}:%{version}-%{release}
 Requires:	pkgconfig
 
 %description	devel
