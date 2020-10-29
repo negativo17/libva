@@ -1,4 +1,4 @@
-%global     soname_version 2.700.0
+%global     soname_version 2.900.0
 
 Name:       libva
 Epoch:      1
