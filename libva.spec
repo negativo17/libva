@@ -2,13 +2,13 @@
 
 Name:       libva
 Epoch:      1
-Version:    2.9.0
+Version:    2.9.1
 Release:    1%{?dist}
 Summary:    Implementation for VA-API (Video Acceleration API)
 License:    MIT
 URL:        https://01.org/linuxmedia/vaapi
 
-Source0:    https://github.com/intel/%{name}/releases/download/%{version}/%{name}-%{version}.tar.bz2
+Source0:    https://github.com/intel/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -86,6 +86,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/libva-wayland.pc
 
 %changelog
+* Fri Oct 30 2020 Simone Caronni <negativo17@gmail.com> - 1:2.9.1-1
+- Update to 2.9.1.
+
 * Thu Oct 29 2020 Simone Caronni <negativo17@gmail.com> - 1:2.9.0-1
 - Update to 2.9.0.
 
