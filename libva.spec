@@ -12,6 +12,7 @@ Source0:    https://github.com/intel/%{name}/archive/%{version}.tar.gz#/%{name}-
 
 BuildRequires:  autoconf
 BuildRequires:  automake
+BuildRequires:  gcc
 BuildRequires:  libtool
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(gl)
