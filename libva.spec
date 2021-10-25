@@ -1,8 +1,8 @@
-%global     soname_version 2.1200.0
+%global     soname_version 2.1300.0
 
 Name:       libva
 Epoch:      1
-Version:    2.12.0
+Version:    2.13.0
 Release:    1%{?dist}
 Summary:    Implementation for VA-API (Video Acceleration API)
 License:    MIT
@@ -87,6 +87,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/libva-wayland.pc
 
 %changelog
+* Mon Oct 25 2021 Simone Caronni <negativo17@gmail.com> - 1:2.13.0-1
+- Update to 2.13.0.
+
 * Wed Jun 23 2021 Simone Caronni <negativo17@gmail.com> - 1:2.12.0-1
 - Update to 2.12.0.
 
