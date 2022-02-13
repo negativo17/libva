@@ -3,12 +3,13 @@
 Name:       libva
 Epoch:      1
 Version:    2.13.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Implementation for VA-API (Video Acceleration API)
 License:    MIT
 URL:        https://01.org/linuxmedia/vaapi
 
 Source0:    https://github.com/intel/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Patch0:     https://patch-diff.githubusercontent.com/raw/intel/libva/pull/554.patch
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -87,6 +88,9 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/libva-wayland.pc
 
 %changelog
+* Sun Feb 13 2022 Simone Caronni <negativo17@gmail.com> - 1:2.13.0-2
+- Add nvidia-drm to the DRM driver map.
+
 * Mon Oct 25 2021 Simone Caronni <negativo17@gmail.com> - 1:2.13.0-1
 - Update to 2.13.0.
 
