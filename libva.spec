@@ -1,9 +1,9 @@
-%global     soname_version 2.1300.0
+%global     soname_version 2.1400.0
 
 Name:       libva
 Epoch:      1
-Version:    2.13.0
-Release:    2%{?dist}
+Version:    2.14.0
+Release:    1%{?dist}
 Summary:    Implementation for VA-API (Video Acceleration API)
 License:    MIT
 URL:        https://01.org/linuxmedia/vaapi
@@ -11,10 +11,9 @@ URL:        https://01.org/linuxmedia/vaapi
 Source0:    https://github.com/intel/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Patch0:     https://patch-diff.githubusercontent.com/raw/intel/libva/pull/554.patch
 
-BuildRequires:  autoconf
-BuildRequires:  automake
+BuildRequires:  doxygen
 BuildRequires:  gcc
-BuildRequires:  libtool
+BuildRequires:  meson >= 0.53.0
 BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(wayland-client) >= 1.11.0
@@ -40,24 +39,24 @@ applications that use %{name}.
 
 %prep
 %autosetup -p1
-autoreconf -vif
 
 %build
-%configure \
-    --disable-static \
-    --enable-drm \
-    --enable-glx \
-    --enable-va-messaging \
-    --enable-wayland \
-    --enable-x11
+%meson \
+  -D with_x11=yes \
+  -D with_glx=yes \
+  -D with_wayland=yes \
+  -D enable_docs=true \
+  -D enable_va_messaging=true
 
-%make_build
+%meson_build
 
 %install
-%make_install
-find %{buildroot} -name "*.la" -delete
+%meson_install
 
-%ldconfig_scriptlets
+# Let RPM pick up docs
+rm -fr %{buildroot}%{_docdir}/%{name}
+
+%{?ldconfig_scriptlets}
 
 %files
 %doc NEWS
@@ -75,6 +74,7 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/libva-x11.so.2
 
 %files devel
+%doc %_vpath_builddir/doc/html-out
 %{_includedir}/va
 %{_libdir}/libva-drm.so
 %{_libdir}/libva-glx.so
@@ -88,6 +88,11 @@ find %{buildroot} -name "*.la" -delete
 %{_libdir}/pkgconfig/libva-wayland.pc
 
 %changelog
+* Wed Mar 02 2022 Simone Caronni <negativo17@gmail.com> - 1:2.14.0-1
+- Update to 2.14.0.
+- Switch to meson.
+- Enable docs.
+
 * Sun Feb 13 2022 Simone Caronni <negativo17@gmail.com> - 1:2.13.0-2
 - Add nvidia-drm to the DRM driver map.
 
