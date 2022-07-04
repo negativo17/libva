@@ -1,15 +1,14 @@
-%global     soname_version 2.1400.0
+%global soname_version 2.1500.0
 
 Name:       libva
 Epoch:      1
-Version:    2.14.0
+Version:    2.15.0
 Release:    1%{?dist}
 Summary:    Implementation for VA-API (Video Acceleration API)
 License:    MIT
 URL:        https://01.org/linuxmedia/vaapi
 
 Source0:    https://github.com/intel/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Patch0:     https://patch-diff.githubusercontent.com/raw/intel/libva/pull/554.patch
 
 BuildRequires:  doxygen
 BuildRequires:  gcc
@@ -88,6 +87,9 @@ rm -fr %{buildroot}%{_docdir}/%{name}
 %{_libdir}/pkgconfig/libva-wayland.pc
 
 %changelog
+* Mon Jul 04 2022 Simone Caronni <negativo17@gmail.com> - 1:2.15.0-1
+- Update to 2.15.0.
+
 * Wed Mar 02 2022 Simone Caronni <negativo17@gmail.com> - 1:2.14.0-1
 - Update to 2.14.0.
 - Switch to meson.
