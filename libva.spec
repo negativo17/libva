@@ -3,12 +3,13 @@
 Name:       libva
 Epoch:      1
 Version:    2.17.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Implementation for VA-API (Video Acceleration API)
 License:    MIT
 URL:        https://01.org/linuxmedia/vaapi
 
 Source0:    https://github.com/intel/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Patch0:     https://github.com/intel/libva/commit/d05ff3ce344e67a8e8ce18e4cd3fa8a45176d636.patch
 
 BuildRequires:  doxygen
 BuildRequires:  gcc
@@ -18,6 +19,9 @@ BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(wayland-client) >= 1.11.0
 BuildRequires:  pkgconfig(wayland-scanner) >= 1.11.0
 BuildRequires:  pkgconfig(x11)
+BuildRequires:  pkgconfig(x11-xcb)
+BuildRequires:  pkgconfig(xcb)
+BuildRequires:  pkgconfig(xcb-dri3)
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(xfixes)
 
@@ -45,7 +49,8 @@ applications that use %{name}.
   -D with_glx=yes \
   -D with_wayland=yes \
   -D enable_docs=true \
-  -D enable_va_messaging=true
+  -D enable_va_messaging=true \
+  -D with_legacy=nvctrl
 
 %meson_build
 
@@ -87,6 +92,10 @@ rm -fr %{buildroot}%{_docdir}/%{name}
 %{_libdir}/pkgconfig/libva-wayland.pc
 
 %changelog
+* Wed Feb 08 2023 Simone Caronni <negativo17@gmail.com> - 1:2.17.0-2
+- Backport patch to disable DRI3 (LIBVA_DRI3_DISABLE=1).
+- Enable nvctrl support to fix nvidia-vaapi-driver.
+
 * Thu Jan 26 2023 Simone Caronni <negativo17@gmail.com> - 1:2.17.0-1
 - Update to 2.17.0.
 
