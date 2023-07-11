@@ -1,8 +1,8 @@
-%global soname_version 2.1800.0
+%global soname_version 2.1900.0
 
 Name:       libva
 Epoch:      1
-Version:    2.18.0
+Version:    2.19.0
 Release:    1%{?dist}
 Summary:    Implementation for VA-API (Video Acceleration API)
 License:    MIT
@@ -13,10 +13,10 @@ Source0:    https://github.com/intel/%{name}/archive/%{version}.tar.gz#/%{name}-
 BuildRequires:  doxygen
 BuildRequires:  gcc
 BuildRequires:  meson >= 0.53.0
-BuildRequires:  pkgconfig(libdrm)
+BuildRequires:  pkgconfig(libdrm) >= 2.4.60
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(wayland-client) >= 1.11.0
-BuildRequires:  pkgconfig(wayland-scanner) >= 1.11.0
+BuildRequires:  pkgconfig(wayland-scanner) >= 1.15.0
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(x11-xcb)
 BuildRequires:  pkgconfig(xcb)
@@ -90,6 +90,9 @@ rm -fr %{buildroot}%{_docdir}/%{name}
 %{_libdir}/pkgconfig/libva-wayland.pc
 
 %changelog
+* Tue Jul 11 2023 Simone Caronni <negativo17@gmail.com> - 1:2.19.0-1
+- Update to 2.19.0.
+
 * Tue Apr 11 2023 Simone Caronni <negativo17@gmail.com> - 1:2.18.0-1
 - Update to 2.18.0.
 
