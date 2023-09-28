@@ -1,8 +1,8 @@
-%global soname_version 2.1900.0
+%global soname_version 2.2000.0
 
 Name:       libva
 Epoch:      1
-Version:    2.19.0
+Version:    2.20.0
 Release:    1%{?dist}
 Summary:    Implementation for VA-API (Video Acceleration API)
 License:    MIT
@@ -10,8 +10,8 @@ URL:        https://01.org/linuxmedia/vaapi
 
 Source0:    https://github.com/intel/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
+BuildRequires:  devtoolset-9-gcc-c++
 BuildRequires:  doxygen
-BuildRequires:  gcc
 BuildRequires:  meson >= 0.53.0
 BuildRequires:  pkgconfig(libdrm) >= 2.4.60
 BuildRequires:  pkgconfig(gl)
@@ -43,6 +43,8 @@ applications that use %{name}.
 %autosetup -p1
 
 %build
+. /opt/rh/devtoolset-9/enable
+
 %meson \
   -D with_x11=yes \
   -D with_glx=yes \
@@ -90,6 +92,9 @@ rm -fr %{buildroot}%{_docdir}/%{name}
 %{_libdir}/pkgconfig/libva-wayland.pc
 
 %changelog
+* Thu Sep 28 2023 Simone Caronni <negativo17@gmail.com> - 1:2.20.0-1
+- Update to 2.20.0.
+
 * Tue Jul 11 2023 Simone Caronni <negativo17@gmail.com> - 1:2.19.0-1
 - Update to 2.19.0.
 
