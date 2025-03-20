@@ -58,8 +58,6 @@ applications that use %{name}.
 # Let RPM pick up docs
 rm -fr %{buildroot}%{_docdir}/%{name}
 
-%{?ldconfig_scriptlets}
-
 %files
 %doc NEWS
 %license COPYING
