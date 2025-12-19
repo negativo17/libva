@@ -1,8 +1,6 @@
-%global soname_version 2.2200.0
-
 Name:       libva
 Epoch:      1
-Version:    2.22.0
+Version:    2.23.0
 Release:    1%{?dist}
 Summary:    Implementation for VA-API (Video Acceleration API)
 License:    MIT
@@ -13,7 +11,7 @@ Source0:    https://github.com/intel/%{name}/archive/%{version}.tar.gz#/%{name}-
 BuildRequires:  doxygen
 BuildRequires:  gcc
 BuildRequires:  meson >= 0.53.0
-BuildRequires:  pkgconfig(libdrm) >= 2.4.60
+BuildRequires:  pkgconfig(libdrm) >= 2.4.75
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(wayland-client) >= 1.11.0
 BuildRequires:  pkgconfig(wayland-scanner) >= 1.15.0
@@ -62,15 +60,15 @@ rm -fr %{buildroot}%{_docdir}/%{name}
 %doc NEWS
 %license COPYING
 %ghost %{_sysconfdir}/libva.conf
-%{_libdir}/libva-drm.so.%{soname_version}
+%{_libdir}/libva-drm.so.2.*
 %{_libdir}/libva-drm.so.2
-%{_libdir}/libva-glx.so.%{soname_version}
+%{_libdir}/libva-glx.so.2.*
 %{_libdir}/libva-glx.so.2
-%{_libdir}/libva.so.%{soname_version}
+%{_libdir}/libva.so.2.*
 %{_libdir}/libva.so.2
-%{_libdir}/libva-wayland.so.%{soname_version}
+%{_libdir}/libva-wayland.so.2.*
 %{_libdir}/libva-wayland.so.2
-%{_libdir}/libva-x11.so.%{soname_version}
+%{_libdir}/libva-x11.so.2.*
 %{_libdir}/libva-x11.so.2
 
 %files devel
@@ -88,6 +86,9 @@ rm -fr %{buildroot}%{_docdir}/%{name}
 %{_libdir}/pkgconfig/libva-wayland.pc
 
 %changelog
+* Fri Dec 19 2025 Simone Caronni <negativo17@gmail.com> - 1:2.23.0-1
+- Update to 2.23.0.
+
 * Tue Jun 25 2024 Simone Caronni <negativo17@gmail.com> - 1:2.22.0-1
 - Update to 2.22.0.
 
@@ -109,38 +110,3 @@ rm -fr %{buildroot}%{_docdir}/%{name}
 
 * Thu Jan 26 2023 Simone Caronni <negativo17@gmail.com> - 1:2.17.0-1
 - Update to 2.17.0.
-
-* Tue Oct 04 2022 Simone Caronni <negativo17@gmail.com> - 1:2.16.0-1
-- Update to 2.16.0.
-
-* Mon Jul 04 2022 Simone Caronni <negativo17@gmail.com> - 1:2.15.0-1
-- Update to 2.15.0.
-
-* Wed Mar 02 2022 Simone Caronni <negativo17@gmail.com> - 1:2.14.0-1
-- Update to 2.14.0.
-- Switch to meson.
-- Enable docs.
-
-* Sun Feb 13 2022 Simone Caronni <negativo17@gmail.com> - 1:2.13.0-2
-- Add nvidia-drm to the DRM driver map.
-
-* Mon Oct 25 2021 Simone Caronni <negativo17@gmail.com> - 1:2.13.0-1
-- Update to 2.13.0.
-
-* Wed Jun 23 2021 Simone Caronni <negativo17@gmail.com> - 1:2.12.0-1
-- Update to 2.12.0.
-
-* Sun Apr 04 2021 Simone Caronni <negativo17@gmail.com> - 1:2.11.0-1
-- Update to 2.11.0.
-
-* Fri Dec 04 2020 Simone Caronni <negativo17@gmail.com> - 1:2.10.0-1
-- Update to 2.10.0.
-
-* Fri Oct 30 2020 Simone Caronni <negativo17@gmail.com> - 1:2.9.1-1
-- Update to 2.9.1.
-
-* Thu Oct 29 2020 Simone Caronni <negativo17@gmail.com> - 1:2.9.0-1
-- Update to 2.9.0.
-
-* Sat May 02 2020 Simone Caronni <negativo17@gmail.com> - 1:2.7.1-1
-- First build.
